@@ -11,6 +11,9 @@ successfully _Restart and Run All_.
 
 #### This literate document can be viewed as a [notebook](http://nbviewer.jupyter.org/github/tonyfast/restartable/blob/master/readme.ipynb), <a href="http://nbviewer.jupyter.org/format/slides/github/tonyfast/restartable/blob/master/readme.ipynb" title="View as Slides"><span class="menu-text">presentation</span><span class="fa fa-gift fa-2x menu-icon"></span></a>, or <a href="https://github.com/tonyfast/restartable/blob/master/readme.ipynb" title="View on GitHub"><span class="menu-text">View on GitHub</span><span class="fa fa-github fa-2x menu-icon"></span></a> 
 
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/tonyfast/restartable/master?filepath=readme.ipynb)
+
+
 ## Motivation
 
 __Procedural__ notebooks are inspired by [Paco Nathan](http://liber118.com/pxn/)'s [_Oriole: a new learning medium based on Jupyter + Docker_](http://nbviewer.jupyter.org/github/jupyterday-atlanta-2016/oriole_jupyterday_atl/blob/master/oriole_talk.ipynb) given at [Jupyter Day Atlanta 2016](https://jupyterday-atlanta-2016.github.io). In Paco's _unofficial_ [styleguide for authoring Jupyter notebooks](http://nbviewer.jupyter.org/github/jupyterday-atlanta-2016/oriole_jupyterday_atl/blob/master/oriole_talk.ipynb#What-we-learned-about-teaching-with-notebooks) he suggests:
@@ -56,6 +59,15 @@ def attach(nb:NotebookNode=particles)->None:
     'In' in globals() and nb.cells.append(v4.new_code_cell('\n'.join(
         str for str in In[-1].splitlines() if not str.startswith('attach'))))
 ```
+
+```python
+    %%file requirements.txt
+    pandas
+    matplotlib
+```
+
+    Writing requirements.txt
+
 
 # build `particles.ipynb`
 
