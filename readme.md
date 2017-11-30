@@ -9,6 +9,18 @@ The __interactive__ _in-memory_ editing mode is a critical, but fleeting stage i
 __Procedural__ notebooks are readable and reusable literate documents that can be executed successfully in other contexts like documention, module development, or external jobs.  This notebook explores the reusability of __procedural__ notebooks that 
 successfully _Restart and Run All_.  
 
+<h4> [nbviewer](http://nbviewer.jupyter.org/github/tonyfast/restartable/blob/master/readme.ipynb)
+ : 
+<a href="http://nbviewer.jupyter.org/format/slides/github/tonyfast/restartable/blob/master/readme.ipynb" title="View as Slides">
+      <span class="fa fa-gift fa-2x menu-icon"></span>
+      <span class="menu-text">View as Slides</span>
+</a>
+ : 
+<a href="https://github.com/tonyfast/restartable/blob/master/readme.ipynb" title="View on GitHub">
+      <span class="fa fa-github fa-2x menu-icon"></span>
+      <span class="menu-text">View on GitHub</span>
+    </a> </h4>
+
 ## Motivation
 
 __Procedural__ notebooks are inspired by [Paco Nathan](http://liber118.com/pxn/)'s [_Oriole: a new learning medium based on Jupyter + Docker_](http://nbviewer.jupyter.org/github/jupyterday-atlanta-2016/oriole_jupyterday_atl/blob/master/oriole_talk.ipynb) given at [Jupyter Day Atlanta 2016](https://jupyterday-atlanta-2016.github.io). In Paco's _unofficial_ [styleguide for authoring Jupyter notebooks](http://nbviewer.jupyter.org/github/jupyterday-atlanta-2016/oriole_jupyterday_atl/blob/master/oriole_talk.ipynb#What-we-learned-about-teaching-with-notebooks) he suggests:
@@ -162,6 +174,18 @@ if __name__ == '__main__' and '__file__' not in globals():
     !python -m doctest particles.py & echo "success"
     !jupyter nbconvert --to markdown --TemplateExporter.exclude_input_prompt=True readme.ipynb
 ```
+
+    [NbConvertApp] Converting notebook particles.ipynb to python
+    [NbConvertApp] Writing 1192 bytes to particles.py
+    [NbConvertApp] Converting notebook readme.ipynb to python
+    [NbConvertApp] Writing 9271 bytes to readme.py
+    success
+    [NbConvertApp] Converting notebook readme.ipynb to markdown
+    [NbConvertApp] Support files will be in readme_files/
+    [NbConvertApp] Making directory readme_files
+    [NbConvertApp] Making directory readme_files
+    [NbConvertApp] Writing 11575 bytes to readme.md
+
 
 * `setuptools` will install the __particles__ package  using the conditions for setup mode.  
 
@@ -326,11 +350,11 @@ df.source.str.split('\n').apply(len).groupby([df.index, df.cell_type]).sum().to_
 ```
 
 
-![png](readme_files/readme_28_0.png)
+![png](readme_files/readme_29_0.png)
 
 
 
-![png](readme_files/readme_28_1.png)
+![png](readme_files/readme_29_1.png)
 
 
 # Summary
