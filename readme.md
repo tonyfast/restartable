@@ -9,7 +9,7 @@ The __interactive__ _in-memory_ editing mode is a critical, but fleeting stage i
 __Procedural__ notebooks are readable and reusable literate documents that can be executed successfully in other contexts like documention, module development, or external jobs.  This notebook explores the reusability of __procedural__ notebooks that 
 successfully _Restart and Run All_.  
 
-<h4> [nbviewer](http://nbviewer.jupyter.org/github/tonyfast/restartable/blob/master/readme.ipynb)
+<h4> <a href="http://nbviewer.jupyter.org/github/tonyfast/restartable/blob/master/readme.ipynb">nbviewer</a>
  : 
 <a href="http://nbviewer.jupyter.org/format/slides/github/tonyfast/restartable/blob/master/readme.ipynb" title="View as Slides">
       <span class="fa fa-gift fa-2x menu-icon"></span>
@@ -72,6 +72,18 @@ def attach(nb:NotebookNode=particles)->None:
 > Many cells in __readme.ipynb__ have lived and died before you read this line.
 
 The __code__ cell below will be appended to __particles.ipynb__.  It __import__s tools into __readme.ipynb__'s interactive mode.  It now becomes quite easy to iteratively develop and test __parts__ of the procedural document.
+
+```python
+attach(particles)
+"""particles treat notebooks as data"""
+```
+
+
+
+
+    'particles treat notebooks as data'
+
+
 
 ```python
 attach(particles)
@@ -176,15 +188,15 @@ if __name__ == '__main__' and '__file__' not in globals():
 ```
 
     [NbConvertApp] Converting notebook particles.ipynb to python
-    [NbConvertApp] Writing 1192 bytes to particles.py
+    [NbConvertApp] Writing 1234 bytes to particles.py
     [NbConvertApp] Converting notebook readme.ipynb to python
-    [NbConvertApp] Writing 9271 bytes to readme.py
+    [NbConvertApp] Writing 9924 bytes to readme.py
     success
     [NbConvertApp] Converting notebook readme.ipynb to markdown
     [NbConvertApp] Support files will be in readme_files/
     [NbConvertApp] Making directory readme_files
     [NbConvertApp] Making directory readme_files
-    [NbConvertApp] Writing 11575 bytes to readme.md
+    [NbConvertApp] Writing 12697 bytes to readme.md
 
 
 * `setuptools` will install the __particles__ package  using the conditions for setup mode.  
@@ -247,25 +259,33 @@ df.sample(5)
       <th>readme.ipynb</th>
       <td>markdown</td>
       <td>NaN</td>
+      <td>{}</td>
+      <td>NaN</td>
+      <td>&lt;h4&gt; [nbviewer](http://nbviewer.jupyter.org/gi...</td>
+    </tr>
+    <tr>
+      <th>readme.ipynb</th>
+      <td>code</td>
+      <td>12.0</td>
+      <td>{'slideshow': {'slide_type': '-'}}</td>
+      <td>[{'data': {'image/png': 'iVBORw0KGgoAAAANSUhEU...</td>
+      <td>\n    df.cell_type.groupby(df.index).value...</td>
+    </tr>
+    <tr>
+      <th>readme.ipynb</th>
+      <td>markdown</td>
+      <td>NaN</td>
       <td>{'slideshow': {'slide_type': 'subslide'}}</td>
       <td>NaN</td>
-      <td># callables in `particles` \n\nCreate two main...</td>
+      <td>### The distribution of markdown and code cell...</td>
     </tr>
     <tr>
       <th>readme.ipynb</th>
-      <td>code</td>
-      <td>1.0</td>
-      <td>{'collapsed': True}</td>
-      <td>[]</td>
-      <td>from nbformat import v4, NotebookNode\nnb, par...</td>
-    </tr>
-    <tr>
-      <th>readme.ipynb</th>
-      <td>code</td>
-      <td>5.0</td>
-      <td>{'collapsed': True}</td>
-      <td>[]</td>
-      <td>if __name__ != '__main__': assert __name__+'.p...</td>
+      <td>markdown</td>
+      <td>NaN</td>
+      <td>{'slideshow': {'slide_type': 'slide'}}</td>
+      <td>NaN</td>
+      <td># Summary\n\n* __Procedural__ notebooks _Resta...</td>
     </tr>
     <tr>
       <th>readme.ipynb</th>
@@ -274,14 +294,6 @@ df.sample(5)
       <td>{'slideshow': {'slide_type': 'slide'}}</td>
       <td>NaN</td>
       <td># This notebook is procedural notebook\n\nIts ...</td>
-    </tr>
-    <tr>
-      <th>readme.ipynb</th>
-      <td>code</td>
-      <td>4.0</td>
-      <td>{'slideshow': {'slide_type': '-'}, 'collapsed'...</td>
-      <td>[]</td>
-      <td>attach()\ndef files_to_data(df:DataFrame)-&gt;Dat...</td>
     </tr>
   </tbody>
 </table>
@@ -327,13 +339,13 @@ df.source.str.split('\n').apply(len).groupby([df.index, df.cell_type]).sum().to_
   <tbody>
     <tr>
       <th>particles.ipynb</th>
-      <td>25.0</td>
+      <td>26.0</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>readme.ipynb</th>
-      <td>61.0</td>
-      <td>98.0</td>
+      <td>63.0</td>
+      <td>107.0</td>
     </tr>
   </tbody>
 </table>
@@ -350,11 +362,11 @@ df.source.str.split('\n').apply(len).groupby([df.index, df.cell_type]).sum().to_
 ```
 
 
-![png](readme_files/readme_29_0.png)
+![png](readme_files/readme_30_0.png)
 
 
 
-![png](readme_files/readme_29_1.png)
+![png](readme_files/readme_30_1.png)
 
 
 # Summary

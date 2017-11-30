@@ -1,6 +1,9 @@
 
 # coding: utf-8
 
+"""particles treat notebooks as data"""
+
+
 from nbformat import reads, v4 
 from pandas import concat, DataFrame, to_datetime 
 from pathlib import Path 
