@@ -66,7 +66,7 @@ def attach(nb:NotebookNode=particles)->None:
     matplotlib
 ```
 
-    Writing requirements.txt
+    Overwriting requirements.txt
 
 
 # build `particles.ipynb`
@@ -181,6 +181,9 @@ if __name__ == '__main__':
     Path(nb).write_text(__import__('nbformat').writes(particles))
 ```
 
+    TestResults(failed=0, attempted=5)
+
+
 * Transform both __readme.ipynb__ and the newly minted __particles.ipynb__ to python scripts.
 * Autopep it because we can.
 * Rerun the same tests on __particles.py__
@@ -192,6 +195,15 @@ if __name__ == '__main__' and '__file__' not in globals():
     !python -m doctest particles.py & echo "success"
     !jupyter nbconvert --to markdown --TemplateExporter.exclude_input_prompt=True readme.ipynb
 ```
+
+    [NbConvertApp] Converting notebook particles.ipynb to python
+    [NbConvertApp] Writing 1234 bytes to particles.py
+    [NbConvertApp] Converting notebook readme.ipynb to python
+    [NbConvertApp] Writing 10488 bytes to readme.py
+    success
+    [NbConvertApp] Converting notebook readme.ipynb to markdown
+    [NbConvertApp] Writing 10407 bytes to readme.md
+
 
 * `setuptools` will install the __particles__ package  using the conditions for setup mode.  
 
@@ -209,6 +221,8 @@ if __name__ == '__main__' and '__file__' not in globals():
 
 ## Reusing `particles`
 
+> A notebook that can be imported is reusable.
+
 __Particles__ can now be imported into the current scope. __particles__ allow the user to explore notebooks and their cells as data.
 
 ```python
@@ -220,11 +234,132 @@ df = particles.read_notebooks()
 df.sample(5)
 ```
 
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cell_type</th>
+      <th>execution_count</th>
+      <th>metadata</th>
+      <th>outputs</th>
+      <th>source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>readme.ipynb</th>
+      <td>code</td>
+      <td>NaN</td>
+      <td>{}</td>
+      <td>[]</td>
+      <td>if __name__ == '__main__':\n    print(__import...</td>
+    </tr>
+    <tr>
+      <th>readme.ipynb</th>
+      <td>markdown</td>
+      <td>NaN</td>
+      <td>{'slideshow': {'slide_type': '-'}}</td>
+      <td>NaN</td>
+      <td>### In Jupyter mode\n\n&gt; **`__name__`** == **`...</td>
+    </tr>
+    <tr>
+      <th>readme.ipynb</th>
+      <td>code</td>
+      <td>NaN</td>
+      <td>{'collapsed': True}</td>
+      <td>[]</td>
+      <td>from IPython import get_ipython</td>
+    </tr>
+    <tr>
+      <th>particles.ipynb</th>
+      <td>code</td>
+      <td>NaN</td>
+      <td>{}</td>
+      <td>[]</td>
+      <td>def files_to_data(df:DataFrame)-&gt;DataFrame:\n ...</td>
+    </tr>
+    <tr>
+      <th>readme.ipynb</th>
+      <td>markdown</td>
+      <td>NaN</td>
+      <td>{}</td>
+      <td>NaN</td>
+      <td>&gt; __particles__ is inspired by the New York T...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
 ## Quantifying lines of code
 
 ```python
 df.source.str.split('\n').apply(len).groupby([df.index, df.cell_type]).sum().to_frame('lines of ...').unstack(-1)
 ```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" halign="left">lines of ...</th>
+    </tr>
+    <tr>
+      <th>cell_type</th>
+      <th>code</th>
+      <th>markdown</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>particles.ipynb</th>
+      <td>26.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>readme.ipynb</th>
+      <td>66.0</td>
+      <td>108.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 ### The distribution of markdown and code cells in the __particles__ project.
 
@@ -233,6 +368,14 @@ df.source.str.split('\n').apply(len).groupby([df.index, df.cell_type]).sum().to_
     
     df.cell_type.groupby(df.index).value_counts().unstack('cell_type').apply(lambda df: df.plot.pie() and plt.show());
 ```
+
+
+![png](readme_files/readme_32_0.png)
+
+
+
+![png](readme_files/readme_32_1.png)
+
 
 # Summary
 
