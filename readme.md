@@ -29,7 +29,7 @@ __Procedural__ notebooks are inspired by [Paco Nathan](http://liber118.com/pxn/)
 
 ## __Procedural notebooks__
 
-* ... restart and run all
+* ... restart and run all, or they don't.  Their reusability can be tested in different contexts.s
 * ... change over time
 * ... encapsulate cycles of [non-structured](https://en.wikipedia.org/wiki/Non-structured_programming),
 [structured](https://en.wikipedia.org/wiki/Structured_programming), and [literate programming](https://en.wikipedia.org/wiki/Literate_programming) actions.
@@ -156,6 +156,13 @@ The `get_ipython` context must be manually imported to use magics in converted n
     from IPython import get_ipython
 ```
 
+### Controlling value assignment
+
+Introspect the interactive Jupyter namespace to control expressions in procedural notebooks.
+
+    
+    thing = get_ipython().user_ns.get('thing', 42):
+
 ## `readme` procedures <small>to make <code>particles</code></small>
 
 Below are the procedures to test and create the `particles` package.
@@ -190,13 +197,13 @@ if __name__ == '__main__' and '__file__' not in globals():
     [NbConvertApp] Converting notebook particles.ipynb to python
     [NbConvertApp] Writing 1234 bytes to particles.py
     [NbConvertApp] Converting notebook readme.ipynb to python
-    [NbConvertApp] Writing 9924 bytes to readme.py
+    [NbConvertApp] Writing 9935 bytes to readme.py
     success
     [NbConvertApp] Converting notebook readme.ipynb to markdown
     [NbConvertApp] Support files will be in readme_files/
     [NbConvertApp] Making directory readme_files
     [NbConvertApp] Making directory readme_files
-    [NbConvertApp] Writing 12697 bytes to readme.md
+    [NbConvertApp] Writing 12839 bytes to readme.md
 
 
 * `setuptools` will install the __particles__ package  using the conditions for setup mode.  
@@ -259,41 +266,41 @@ df.sample(5)
       <th>readme.ipynb</th>
       <td>markdown</td>
       <td>NaN</td>
-      <td>{}</td>
+      <td>{'slideshow': {'slide_type': 'subslide'}}</td>
       <td>NaN</td>
-      <td>&lt;h4&gt; [nbviewer](http://nbviewer.jupyter.org/gi...</td>
+      <td># callables in `particles` \n\nCreate two main...</td>
     </tr>
     <tr>
       <th>readme.ipynb</th>
       <td>code</td>
-      <td>12.0</td>
+      <td>13.0</td>
       <td>{'slideshow': {'slide_type': '-'}}</td>
-      <td>[{'data': {'image/png': 'iVBORw0KGgoAAAANSUhEU...</td>
+      <td>[{'metadata': {}, 'output_type': 'display_data...</td>
       <td>\n    df.cell_type.groupby(df.index).value...</td>
     </tr>
     <tr>
-      <th>readme.ipynb</th>
-      <td>markdown</td>
+      <th>particles.ipynb</th>
+      <td>code</td>
       <td>NaN</td>
-      <td>{'slideshow': {'slide_type': 'subslide'}}</td>
-      <td>NaN</td>
-      <td>### The distribution of markdown and code cell...</td>
+      <td>{}</td>
+      <td>[]</td>
+      <td>def read_notebooks(dir:str='.')-&gt;DataFrame:\n ...</td>
     </tr>
     <tr>
       <th>readme.ipynb</th>
       <td>markdown</td>
       <td>NaN</td>
-      <td>{'slideshow': {'slide_type': 'slide'}}</td>
+      <td>{'slideshow': {'slide_type': 'fragment'}}</td>
       <td>NaN</td>
-      <td># Summary\n\n* __Procedural__ notebooks _Resta...</td>
+      <td>## Quantifying lines of code</td>
     </tr>
     <tr>
       <th>readme.ipynb</th>
-      <td>markdown</td>
-      <td>NaN</td>
-      <td>{'slideshow': {'slide_type': 'slide'}}</td>
-      <td>NaN</td>
-      <td># This notebook is procedural notebook\n\nIts ...</td>
+      <td>code</td>
+      <td>10.0</td>
+      <td>{'collapsed': True}</td>
+      <td>[]</td>
+      <td>if __name__ == '__main__' and '__file__' i...</td>
     </tr>
   </tbody>
 </table>
@@ -362,14 +369,16 @@ df.source.str.split('\n').apply(len).groupby([df.index, df.cell_type]).sum().to_
 ```
 
 
-![png](readme_files/readme_30_0.png)
+![png](readme_files/readme_31_0.png)
 
 
 
-![png](readme_files/readme_30_1.png)
+![png](readme_files/readme_31_1.png)
 
 
 # Summary
+
+This document must _Restart and Run All_ to acheive the goals of creating the __particles__ module.
 
 * __Procedural__ notebooks _Restart and Run All_ or they don't; they can be tested.
 * Not all notebooks survive, the lucky ones become __procedural__ notebooks.
