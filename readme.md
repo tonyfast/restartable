@@ -9,17 +9,7 @@ The __interactive__ _in-memory_ editing mode is a critical, but fleeting stage i
 __Procedural__ notebooks are readable and reusable literate documents that can be executed successfully in other contexts like documention, module development, or external jobs.  This notebook explores the reusability of __procedural__ notebooks that 
 successfully _Restart and Run All_.  
 
-<h4> <a href="http://nbviewer.jupyter.org/github/tonyfast/restartable/blob/master/readme.ipynb">nbviewer</a>
- : 
-<a href="http://nbviewer.jupyter.org/format/slides/github/tonyfast/restartable/blob/master/readme.ipynb" title="View as Slides">
-      <span class="fa fa-gift fa-2x menu-icon"></span>
-      <span class="menu-text">View as Slides</span>
-</a>
- : 
-<a href="https://github.com/tonyfast/restartable/blob/master/readme.ipynb" title="View on GitHub">
-      <span class="fa fa-github fa-2x menu-icon"></span>
-      <span class="menu-text">View on GitHub</span>
-    </a> </h4>
+#### This literate document can be viewed as a [notebook](http://nbviewer.jupyter.org/github/tonyfast/restartable/blob/master/readme.ipynb), <a href="http://nbviewer.jupyter.org/format/slides/github/tonyfast/restartable/blob/master/readme.ipynb" title="View as Slides"><span class="menu-text">presentation</span><span class="fa fa-gift fa-2x menu-icon"></span></a>, or <a href="https://github.com/tonyfast/restartable/blob/master/readme.ipynb" title="View on GitHub"><span class="menu-text">View on GitHub</span><span class="fa fa-github fa-2x menu-icon"></span></a> 
 
 ## Motivation
 
@@ -179,9 +169,6 @@ if __name__ == '__main__':
     Path(nb).write_text(__import__('nbformat').writes(particles))
 ```
 
-    TestResults(failed=0, attempted=5)
-
-
 * Transform both __readme.ipynb__ and the newly minted __particles.ipynb__ to python scripts.
 * Autopep it because we can.
 * Rerun the same tests on __particles.py__
@@ -193,18 +180,6 @@ if __name__ == '__main__' and '__file__' not in globals():
     !python -m doctest particles.py & echo "success"
     !jupyter nbconvert --to markdown --TemplateExporter.exclude_input_prompt=True readme.ipynb
 ```
-
-    [NbConvertApp] Converting notebook particles.ipynb to python
-    [NbConvertApp] Writing 1234 bytes to particles.py
-    [NbConvertApp] Converting notebook readme.ipynb to python
-    [NbConvertApp] Writing 10311 bytes to readme.py
-    success
-    [NbConvertApp] Converting notebook readme.ipynb to markdown
-    [NbConvertApp] Support files will be in readme_files/
-    [NbConvertApp] Making directory readme_files
-    [NbConvertApp] Making directory readme_files
-    [NbConvertApp] Writing 13149 bytes to readme.md
-
 
 * `setuptools` will install the __particles__ package  using the conditions for setup mode.  
 
@@ -233,132 +208,11 @@ df = particles.read_notebooks()
 df.sample(5)
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>cell_type</th>
-      <th>execution_count</th>
-      <th>metadata</th>
-      <th>outputs</th>
-      <th>source</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>readme.ipynb</th>
-      <td>code</td>
-      <td>6.0</td>
-      <td>{'collapsed': True}</td>
-      <td>[]</td>
-      <td>if __name__ != '__main__': assert __name__+'.p...</td>
-    </tr>
-    <tr>
-      <th>readme.ipynb</th>
-      <td>code</td>
-      <td>4.0</td>
-      <td>{'slideshow': {'slide_type': '-'}, 'collapsed'...</td>
-      <td>[]</td>
-      <td>attach()\ndef read_notebooks(dir:str='.')-&gt;Dat...</td>
-    </tr>
-    <tr>
-      <th>readme.ipynb</th>
-      <td>code</td>
-      <td>12.0</td>
-      <td>{}</td>
-      <td>[{'execution_count': 12, 'data': {'text/plain'...</td>
-      <td>df.source.str.split('\n').apply(len).groupby([...</td>
-    </tr>
-    <tr>
-      <th>readme.ipynb</th>
-      <td>code</td>
-      <td>13.0</td>
-      <td>{'slideshow': {'slide_type': '-'}}</td>
-      <td>[{'data': {'text/plain': '&lt;matplotlib.figure.F...</td>
-      <td>\n    df.cell_type.groupby(df.index).value...</td>
-    </tr>
-    <tr>
-      <th>readme.ipynb</th>
-      <td>markdown</td>
-      <td>NaN</td>
-      <td>{'slideshow': {'slide_type': 'subslide'}}</td>
-      <td>NaN</td>
-      <td>* `setuptools` will install the __particles__ ...</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
 ## Quantifying lines of code
 
 ```python
 df.source.str.split('\n').apply(len).groupby([df.index, df.cell_type]).sum().to_frame('lines of ...').unstack(-1)
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead tr th {
-        text-align: left;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr>
-      <th></th>
-      <th colspan="2" halign="left">lines of ...</th>
-    </tr>
-    <tr>
-      <th>cell_type</th>
-      <th>code</th>
-      <th>markdown</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>particles.ipynb</th>
-      <td>26.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>readme.ipynb</th>
-      <td>63.0</td>
-      <td>115.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 ### The distribution of markdown and code cells in the __particles__ project.
 
@@ -367,14 +221,6 @@ df.source.str.split('\n').apply(len).groupby([df.index, df.cell_type]).sum().to_
     
     df.cell_type.groupby(df.index).value_counts().unstack('cell_type').apply(lambda df: df.plot.pie() and plt.show());
 ```
-
-
-![png](readme_files/readme_31_0.png)
-
-
-
-![png](readme_files/readme_31_1.png)
-
 
 # Summary
 
